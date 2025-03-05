@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Deploy backend'){
             steps {
-                deploy adapters: [tomcat8(credentialsId: '8edba374-524d-4dd9-b4e1-d0738709355b', path: '', url: 'https://localhost:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+                deploy adapters: [tomcat8(credentialsId: '8edba374-524d-4dd9-b4e1-d0738709355b', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
     }
