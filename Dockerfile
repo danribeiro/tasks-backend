@@ -1,4 +1,4 @@
-FROM tomcat:8.5.50-jdk8-openjdk-slim
+FROM tomcat:8.5.50-jdk11-corretto
 
 ARG WAR_FILE
 ARG CONTEXT
