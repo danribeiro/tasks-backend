@@ -36,8 +36,19 @@ pipeline {
         }
         stage ('API test') {
             steps {
-                git 'https://github.com/danribeiro/tasks-api-test'
-                sh 'mvn test'
+                dir('api-test'){
+                    git 'https://github.com/danribeiro/tasks-api-test'
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage ('Deploy Frontend') {
+            steps {
+                dir('frontend'){
+                    git 'https://github.com/danribeiro/tasks-frontend'
+                    sh 'mvn clean package'
+                    deploy adapters: [tomcat8(credentialsId: '8edba374-524d-4dd9-b4e1-d0738709355b', path: '', url: 'http://localhost:8001')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
             }
         }
     }
